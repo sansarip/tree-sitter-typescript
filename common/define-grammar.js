@@ -122,7 +122,9 @@ module.exports = function defineGrammar(dialect) {
       [$.array, $.array_pattern, $.tuple_type],
       [$.array_pattern, $.tuple_type],
 
-      [$.template_literal_type, $.template_string]
+      [$.template_literal_type, $.template_string],
+      [$.property_signature, $.incomplete_property_signature],
+      [$.incomplete_pair, $.incomplete_property_signature]
     ]),
 
     inline: ($, previous) => previous
@@ -658,7 +660,8 @@ module.exports = function defineGrammar(dialect) {
       template_literal_type: $ => seq(
         '`',
         repeat(choice(
-          $._template_chars,
+          $.template_fragment,
+          $._ws,
           $.template_type
         )),
         '`'
@@ -805,6 +808,7 @@ module.exports = function defineGrammar(dialect) {
             choice(
               $.export_statement,
               $.property_signature,
+              $.incomplete_property_signature,
               $.call_signature,
               $.construct_signature,
               $.index_signature,
@@ -826,6 +830,16 @@ module.exports = function defineGrammar(dialect) {
         field('name', $._property_name),
         optional('?'),
         field('type', optional($.type_annotation))
+      ),
+      
+      incomplete_property_signature: $ => seq(
+        optional($.accessibility_modifier),
+        optional('static'),
+        optional($.override_modifier),
+        optional('readonly'),
+        field('name', $._property_name),
+        optional('?'),
+        optional(':')
       ),
 
       _call_signature: $ => seq(
