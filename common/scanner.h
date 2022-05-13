@@ -5,8 +5,9 @@ enum TokenType {
   AUTOMATIC_SEMICOLON,
   TEMPLATE_FRAGMENT,
   TERNARY_QMARK,
+  COMMENT_BLOCK_CONTENT,
   BINARY_OPERATORS,
-  FUNCTION_SIGNATURE_AUTOMATIC_SEMICOLON,
+  FUNCTION_SIGNATURE_AUTOMATIC_SEMICOLON, 
 };
 
 static void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
@@ -199,6 +200,24 @@ static bool scan_ternary_qmark(TSLexer *lexer) {
   return false;
 }
 
+static bool scan_comment_block_content(TSLexer *lexer) {
+  lexer->result_symbol = COMMENT_BLOCK_CONTENT;
+  for (bool has_content = false;; has_content = true) {
+    lexer->mark_end(lexer);
+    int lookahead = lexer->lookahead;
+    switch (lookahead) {
+      case '\0':
+        return false;
+      case '*':
+        advance(lexer);
+        if (lexer->lookahead == '/') return has_content;
+        break;
+      default:
+        advance(lexer);
+    }
+  }
+}
+
 static inline bool external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   if (valid_symbols[TEMPLATE_FRAGMENT]) {
     if (valid_symbols[AUTOMATIC_SEMICOLON]) return false;
@@ -214,6 +233,9 @@ static inline bool external_scanner_scan(void *payload, TSLexer *lexer, const bo
   }
   if (valid_symbols[TERNARY_QMARK]) {
     return scan_ternary_qmark(lexer);
+  }
+  if (valid_symbols[COMMENT_BLOCK_CONTENT]) {
+    return scan_comment_block_content(lexer);
   }
 
   return false;
