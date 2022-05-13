@@ -1467,11 +1467,11 @@
       "required": true,
       "types": [
         {
-          "type": "comment_block_end",
+          "type": "comment_block_content",
           "named": true
         },
         {
-          "type": "comment_block_fragment",
+          "type": "comment_block_end",
           "named": true
         },
         {
@@ -6164,11 +6164,11 @@
     "named": true
   },
   {
-    "type": "comment_block_end",
+    "type": "comment_block_content",
     "named": true
   },
   {
-    "type": "comment_block_fragment",
+    "type": "comment_block_end",
     "named": true
   },
   {

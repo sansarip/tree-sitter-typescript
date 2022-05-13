@@ -5269,8 +5269,16 @@
           "name": "comment_block_start"
         },
         {
-          "type": "SYMBOL",
-          "name": "comment_block_fragment"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "comment_block_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -10765,16 +10773,6 @@
     ],
     [
       {
-        "type": "SYMBOL",
-        "name": "comment_block_end"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "comment_block_fragment"
-      }
-    ],
-    [
-      {
         "type": "STRING",
         "value": "call"
       },
@@ -11109,7 +11107,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "comment_block_fragment"
+      "name": "comment_block_content"
     },
     {
       "type": "STRING",
