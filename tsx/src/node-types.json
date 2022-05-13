@@ -1490,11 +1490,6 @@
     }
   },
   {
-    "type": "comment_block_end",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "computed_property_name",
     "named": true,
     "fields": {},
@@ -6158,6 +6153,10 @@
     "named": true
   },
   {
+    "type": "comment_block_end",
+    "named": true
+  },
+  {
     "type": "comment_block_fragment",
     "named": true
   },
@@ -6315,11 +6314,11 @@
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "object",

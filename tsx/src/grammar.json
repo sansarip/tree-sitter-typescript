@@ -5269,16 +5269,8 @@
           "name": "comment_block_start"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "comment_block_fragment"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "comment_block_fragment"
         },
         {
           "type": "SYMBOL",
@@ -5286,17 +5278,13 @@
         }
       ]
     },
-    "comment_block_fragment": {
-      "type": "PATTERN",
-      "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
-    },
     "comment_block_start": {
       "type": "STRING",
       "value": "/*"
     },
     "comment_block_end": {
       "type": "STRING",
-      "value": "/"
+      "value": "*/"
     },
     "template_string": {
       "type": "SEQ",
@@ -10777,6 +10765,16 @@
     ],
     [
       {
+        "type": "SYMBOL",
+        "name": "comment_block_end"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "comment_block_fragment"
+      }
+    ],
+    [
+      {
         "type": "STRING",
         "value": "call"
       },
@@ -11108,6 +11106,10 @@
     {
       "type": "SYMBOL",
       "name": "_ternary_qmark"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment_block_fragment"
     },
     {
       "type": "STRING",
