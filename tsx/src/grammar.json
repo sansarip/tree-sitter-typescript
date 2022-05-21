@@ -2650,16 +2650,20 @@
         }
       ]
     },
+    "jsx_fragment_start_tag": {
+      "type": "STRING",
+      "value": "<>"
+    },
+    "jsx_fragment_end_tag": {
+      "type": "STRING",
+      "value": "</>"
+    },
     "jsx_fragment": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
+          "type": "SYMBOL",
+          "name": "jsx_fragment_start_tag"
         },
         {
           "type": "REPEAT",
@@ -2669,16 +2673,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
-          "type": "STRING",
-          "value": "/"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
+          "type": "SYMBOL",
+          "name": "jsx_fragment_end_tag"
         }
       ]
     },
