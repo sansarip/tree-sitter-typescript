@@ -124,7 +124,16 @@ module.exports = function defineGrammar(dialect) {
 
       [$.template_literal_type, $.template_string],
       [$.property_signature, $.incomplete_property_signature],
-      [$.incomplete_pair, $.incomplete_property_signature]
+      [$.incomplete_pair, $.incomplete_property_signature],
+
+      [$.jsx_opening_element, $.jsx_attribute, $._jsx_nameless_start_opening_element],
+      [$.jsx_attribute, $._jsx_nameless_start_opening_element],
+      [$.jsx_closing_element, $._jsx_nameless_start_opening_element],
+      [$.jsx_fragment, $._jsx_nameless_start_opening_element],
+      [$.primary_expression, $.method_signature],
+      [$.primary_expression, $.method_signature, $.property_signature, $.incomplete_property_signature],
+      [$.primary_expression, $.method_signature, $.property_signature, $.incomplete_property_signature, $.index_signature],
+      [$.primary_expression, $.index_signature]
     ]),
 
     inline: ($, previous) => previous
@@ -244,6 +253,24 @@ module.exports = function defineGrammar(dialect) {
         repeat(field('attribute', $._jsx_attribute))
       ),
 
+      _jsx_nameless_start_opening_element: $ => seq(
+        '<',
+        choice(
+          field('name', choice(
+            $._jsx_identifier,
+            $.jsx_namespace_name
+          )),
+          seq(
+            optional(field('name', choice(
+              $.identifier,
+              $.nested_identifier
+            ))),
+            field('type_arguments', optional($.type_arguments))
+          )
+        ),
+        repeat(field('attribute', $._jsx_attribute))
+      ),
+
       // This rule is only referenced by expression when the dialect is 'tsx'
       jsx_opening_element: $ => prec.dynamic(-1, seq(
         $._jsx_start_opening_element,
@@ -252,7 +279,7 @@ module.exports = function defineGrammar(dialect) {
 
       // tsx only. See jsx_opening_element.
       jsx_self_closing_element: $ => prec.dynamic(-1, seq(
-        $._jsx_start_opening_element,
+        $._jsx_nameless_start_opening_element,
         '/',
         '>'
       )),

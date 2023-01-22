@@ -14,6 +14,6 @@ tree-sitter-cli@^0.20.6:
 
 "tree-sitter-javascript@github:sansarip/tree-sitter-javascript":
   version "0.20.0"
-  resolved "https://codeload.github.com/sansarip/tree-sitter-javascript/tar.gz/40c189ae43608b7ab14f0d100a3d901d09365417"
+  resolved "https://codeload.github.com/sansarip/tree-sitter-javascript/tar.gz/752b6bb70d9bd788c54165bf92a0c298b888951f"
   dependencies:
     nan "^2.12.1"
