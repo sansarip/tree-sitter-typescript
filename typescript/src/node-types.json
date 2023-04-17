@@ -3434,6 +3434,16 @@
     }
   },
   {
+    "type": "jsx_fragment_end_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "jsx_fragment_start_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "jsx_namespace_name",
     "named": true,
     "fields": {},
@@ -6016,6 +6026,10 @@
     "named": false
   },
   {
+    "type": "/>",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -6300,14 +6314,6 @@
     "named": false
   },
   {
-    "type": "jsx_fragment_end_tag",
-    "named": true
-  },
-  {
-    "type": "jsx_fragment_start_tag",
-    "named": true
-  },
-  {
     "type": "jsx_text",
     "named": true
   },
@@ -6341,11 +6347,11 @@
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "object",
